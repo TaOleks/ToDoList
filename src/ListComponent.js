@@ -17,16 +17,24 @@ const ListComponent = () => {
         const value = e.target.value;
         setInput(value)
     }
+
+    const onEnterDown = (e) =>{
+        if (e.key === 'Enter'){
+            const updateElement = [...item, input] 
+            setItem(updateElement)
+            setInput('')
+        }
+    }
     
 
     return (
         <>
-        <input placeholder='new task' onChange={onChangeHandler}  value = {input} />
+        <input onKeyDown={onEnterDown} placeholder='new task' onChange={onChangeHandler}  value = {input} />
         <p>{item.length}</p>
         <ul>
             {item.map((element, index)=>(
-            <li>
-                {element} 
+            <li key = {index} >
+               {element} 
             </li>))}
             
         </ul>
